@@ -22,7 +22,6 @@ digit_strings = {
     "seven": 7,
     "eight": 8,
     "nine": 9,
-    "ten": 10,
 }
 
 reverse_digit_strings = {key[::-1]: value for key, value in digit_strings.items()}
