@@ -1,6 +1,10 @@
 import sys
 
 
+def parse(input_lines):
+    return [list(line.rstrip()) for line in input_lines]
+
+
 def solve(pipe_map):
     frontier = [
         (i, j)
@@ -23,10 +27,6 @@ def solve(pipe_map):
         raise ValueError(f'Loop has uneven length of {len(loop)}')
 
     return int(len(loop) * 0.5)
-
-
-def parse(input_lines):
-    return [list(line.rstrip()) for line in input_lines]
 
 
 def find_next_pipes(pipe, pipe_map, loop):
@@ -68,6 +68,11 @@ def find_next_pipes(pipe, pipe_map, loop):
     else:
         raise ValueError(f'Invalid pipe type "{pipe_type}"')
 
+    # My algorithm is not as fast as it could be. Probably because of this bit,
+    # since we iterate over the entire loop for the "not in" check.
+    #
+    # Part 2 uses a faster algorithm to find the loop but I can't be bothered updating
+    # part 1 to match it lol
     discovered_neighbours = [tile for tile in neighbours if tile not in loop]
 
     if len(discovered_neighbours) > 1:
